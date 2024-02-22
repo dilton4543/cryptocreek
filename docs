@@ -9,3 +9,4 @@ To create react starter pack using cra(create-react-application) (npm create-rea
 7. handlele package called millify that transforms extremely large numbers into readable strings(npm install millify)
 8. moment to pass times and dates (npm moment)
 9. react-chart.js-2 to render those charts from chart.js to our react application (npm install react-chart.js-2)
+10. Redux toolkit-- the official recommended appraoch for writing  Redux logic. The RTK query is a useful way of fetching data from API's

@@ -44,12 +44,21 @@ const App = () => { //Routes
               </Routes>
           </div>
         </Layout>
-      </div>
 
-      <div className="footer">
+        <div className="footer">
+          <Typography.Title level={5} style={{color: 'white', textAlign: 'center'}}>
+            Cryptocreek <br />
+            All Rights Reserved
+          </Typography.Title>
 
+          <Space> {/* Space --ants designs way of creating a div */}
+            <Link to="/">Home</Link>
+            <Link to="/exchanges">Exchanges</Link>
+            <Link to="/news">News</Link>
+          </Space>
       </div> 
 
+      </div>
     </div>
   )
 }
