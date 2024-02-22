@@ -30,8 +30,11 @@ a:hover{
 .main{
     flex: 0.8;
     width: 100%;
-    
 }
+.layout{
+    border-radius: 15px;
+}
+
 .routes{
     padding: 30px;
 }
@@ -47,7 +50,7 @@ a:hover{
 .logo-container{
     background-color: #001529;
     display: flex;
-    padding: 38px;
+    padding: 32px;
     align-items: center;
     width: 100%;
 }
@@ -126,10 +129,11 @@ a:hover{
         right: 0px;
     }
     .home-title{
-        font-size: 1.4rem !important;
+        text-align: center;
+        font-size: 1rem !important;
     }
     .show-more{
-        font-size: 1.3rem !important;
+        font-size: 0.8rem !important;
     }
 }
 
@@ -358,9 +362,9 @@ width: 70%;
 .crypto-card-container{
     min-height: 65vh !important;
 }
-.crypto-card{
+/* .crypto-card{
     min-width: 250px;
-}
+} */
 .crypto-card .crypto-image{
     width:35px;
 }
@@ -370,9 +374,15 @@ width: 70%;
 }
 
 .footer {
-    background-color: #001529;
+    /* background-color: #001529; */
+    background-color: rgb(0, 21, 41);
+
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
     align-items: center;
+    border-radius: 15px;
+}
+.footer-links{
+    display: flex;
 }

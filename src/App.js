@@ -18,7 +18,7 @@ const App = () => { //Routes
       </div>
 
       <div className="main">
-        <Layout> {/* the layout componenent is a component from antDesign which basically just lays everything down */}
+        <Layout className='layout'> {/* the layout componenent is a component from antDesign which basically just lays everything down */}
           <div className="routes">
             <Routes>  {/* old versions from 5 below use 'Switch' and pass in components directly instead of passing them in a prop element(element{<Example/>}) */}
               <Route  
@@ -46,16 +46,17 @@ const App = () => { //Routes
         </Layout>
 
         <div className="footer">
-          <Typography.Title level={5} style={{color: 'white', textAlign: 'center'}}>
-            Cryptocreek <br />
-            All Rights Reserved
-          </Typography.Title>
 
-          <Space> {/* Space --ants designs way of creating a div */}
+        <Space className='footer-links'> {/* Space --ants designs way of creating a div */}
             <Link to="/">Home</Link>
             <Link to="/exchanges">Exchanges</Link>
             <Link to="/news">News</Link>
           </Space>
+
+          <Typography.Title level={5} style={{color: 'white', textAlign: 'center', fontSize:'13px'}}>
+            Cryptocreek <br />
+            All Rights Reserved
+          </Typography.Title>
       </div> 
 
       </div>
