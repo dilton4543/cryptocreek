@@ -1,4 +1,4 @@
-To create react starter pack using cra(create-react-application) (npm create-react-app <name of the folder or project>) or create a folder open in vscode and then npm create-react-app ./ (set it to the current directory). 
+To create react starter pack using cra(create-react-application) (npm create-react-app <name of the folder or project>) or create a folder open in vscode and then npm create-react-app ./ (set it to the current directory).
 
 1. Rapid API
 2. For stying we'll be using ant design (npm install antd @ant-design/icons)
@@ -6,7 +6,7 @@ To create react starter pack using cra(create-react-application) (npm create-rea
 4. use axios to make API request (npm install axios)
 5. chart.js to create charts (npm install chart.js)
 6. html-react-parser to parse some html data (npm install html-react-parser)
-7. handlele package called millify that transforms extremely large numbers into readable strings(npm install millify)
+7. handlele package called millify that transforms extremely large numbers into readable strings. e.g 477,448,434,094 can be written as 4.4T asin 4.4Trillion. (npm install millify)
 8. moment to pass times and dates (npm moment)
 9. react-chart.js-2 to render those charts from chart.js to our react application (npm install react-chart.js-2)
-10. Redux toolkit-- the official recommended appraoch for writing  Redux logic. The RTK query is a useful way of fetching data from API's
+10. Redux toolkit-- the official recommended appraoch for writing Redux logic. The RTK query is a useful way of fetching data from API's
