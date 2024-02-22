@@ -11,9 +11,7 @@ const Homepage = () => {
   const globalStats = data?.data?.stats; //storing the data we get in a variable so we can use it access different data from our API e.g totalMarketcap, total, exchanges e.t.c..
 
   console.log(data);
-
   if(isFetching) return 'Loading...';
-
 
   return (
     <>
