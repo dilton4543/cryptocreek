@@ -25,5 +25,5 @@ export const cryptoApi = createApi({  //we have to pass some options inside of a
 });
 
 export const {
-    useGetCryptosQuery, //redux toolkit creates a custom hook that we can call to get all the data for our query, and also manage the state of our component. so we export it here so we can use it in our home component where the data is fetched.
+    useGetCryptosQuery //redux toolkit creates a custom hook that we can call to get all the data for our query, and also manage the state of our component. so we export it here so we can use it in our home component where the data is fetched.
 } = cryptoApi;

@@ -386,3 +386,19 @@ width: 70%;
 .footer-links{
     display: flex;
 }
+
+.news-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .news-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .news-card-content {
+    flex: 1; /* This makes sure that the card content takes up the available space */
+  }

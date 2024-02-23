@@ -11,4 +11,5 @@ To create react starter pack using cra(create-react-application) (npm create-rea
 9. react-chart.js-2 to render those charts from chart.js to our react application (npm install react-chart.js-2)
 10. Redux toolkit-- the official recommended appraoch for writing Redux logic. The RTK query is a useful way of fetching data from API's
 11. React Fragments, denoted by <> and </>, serve as a lightweight syntax to group a list of children elements without adding extra nodes to the DOM. This feature is particularly useful when you want to return multiple elements from a component without wrapping them in a redundant <div> or other DOM element.
- 12. In antdesign gutter are simply some spaces between items in a row. You can set them in an opening tag like this <!--(<Row gutter={[32, 32]} className='crypto-card-container'>) -->
+12. In antdesign gutter are simply some spaces between items in a row. You can set them in an opening tag like this <!--(<Row gutter={[32, 32]} className='crypto-card-container'>) -->
+13. API used -> Cryptocurrency News By topapi Cryptography for news and coinrankingAPI for crypto prices

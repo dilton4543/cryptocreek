@@ -37,10 +37,10 @@ const Homepage = () => {
       <Cryptocurrencies simplified={true}/> {/* we are passing the cryptocurrencies.js as a simplified view which takes renders only 10 top cryptocurrencies and we can as well leave the value as empty because if we dont specify, automatically its true. */}
 
       <div className="home-heading-container">
-        <Title level={2} className='home-title'> Latest Crypto News </Title>
-        <Title level={3} className='show-more'> <Link to="/news">Show more</Link> </Title>
+        <Title level={2} className='home-title'>Latest Crypto News</Title>
+        <Title level={3} className='show-more'><Link to="/news">Show more</Link></Title>
       </div>
-      <News />
+      <News simplified={true} /> {/* Pass 'simplified' to show only top 10 news */}
 
     </>
   )
