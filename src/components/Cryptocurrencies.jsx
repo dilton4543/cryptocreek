@@ -24,7 +24,6 @@ const Cryptocurrencies = ({simplified}) => { //we are accessing the prop here wh
   },[cryptosList, SearchTerm]); //creating the useEffect for when we are chaning the search term. we are adding the cryptosList and the search term as dependency array which signifies that the useeffect call back function only gets executed if their value changes. 
 
   if(isFetching) return 'Loading...';
-
   return (
     <>
     {!simplified && ( 
@@ -34,8 +33,8 @@ const Cryptocurrencies = ({simplified}) => { //we are accessing the prop here wh
 
       <Row gutter={[32, 32]} className='crypto-card-container'>
         {cryptos ?.map((crypto)=>( 
-          <Col xs={24} sm={12} lg={6} className='crypto-card' key={crypto.id}>
-            <Link to={`/crypto/${crypto.id}`}>
+          <Col xs={24} sm={12} lg={6} className='crypto-card' key={crypto.uuid}>
+            <Link to={`/crypto/${crypto.uuid}`}>
               <Card 
                 title={`${crypto.rank} . ${crypto.name}`}
                 // eslint-disable-next-line

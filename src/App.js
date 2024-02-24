@@ -34,7 +34,7 @@ const App = () => { //Routes
               element={<Cryptocurrencies />}
               />
               <Route  
-              exact path="/crypto/:coinId"
+              exact path="/crypto/:coinuuId"
               element={<CryptoDetails />}  
               />  {/* the colon means that the coinId will be dynamic, it could be 1,2,3,56,37,33... */}
               <Route  
