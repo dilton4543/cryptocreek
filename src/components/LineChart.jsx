@@ -8,11 +8,13 @@ const { Title } = Typography;
 const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   const coinPrice = []; 
   const coinTimestamp = [];
-
+  
   for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
     coinPrice.push(coinHistory?.data?.history[i].price);
-    // Convert timestamp to a more chart-friendly format if necessary
-    coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp * 1000));
+  }
+
+  for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
+    coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp*1000));
   }
 
   const data = {
