@@ -4,7 +4,7 @@ import React from 'react';
 import { Routes, Route, Link} from 'react-router-dom'; //versions 5 below use Switch not Routes
 import { Layout, Typography, Space } from 'antd';
 
-import { Navbar, Exchanges, Homepage, Cryptocurrencies, News, CryptoDetails } from './components'; // importing our Navbar component from the components folder because we have already exported it in our (components/index.js) folder.
+import { Navbar, Exchanges, Homepage, Cryptocurrencies, News, CryptoDetails, Profile } from './components'; // importing our Navbar component from the components folder because we have already exported it in our (components/index.js) folder.
 
 import './App.css';
 // import 'antd/dist/antd.css';
@@ -40,6 +40,10 @@ const App = () => { //Routes
               <Route  
               exact path="/news"
               element={<News />}
+              />
+              <Route  
+              exact path="/profile"
+              element={<Profile />}
               />
               </Routes>
           </div>
