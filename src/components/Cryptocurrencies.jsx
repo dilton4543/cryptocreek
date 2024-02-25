@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import {Card, Row, Col, Input} from 'antd';
 
 import {useGetCryptosQuery} from '../services/cryptoApi';
+import Loader from './Loader';
 
 const Cryptocurrencies = ({simplified}) => { //we are accessing the prop here which makes it locally available as a varibale to this script file.
 
@@ -23,7 +24,7 @@ const Cryptocurrencies = ({simplified}) => { //we are accessing the prop here wh
 
   },[cryptosList, SearchTerm]); //creating the useEffect for when we are chaning the search term. we are adding the cryptosList and the search term as dependency array which signifies that the useeffect call back function only gets executed if their value changes. 
 
-  if(isFetching) return 'Loading...';
+  if(isFetching) return <Loader />;
   return (
     <>
     {!simplified && ( 

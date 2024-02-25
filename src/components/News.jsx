@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import Loader from './Loader';
 
 const { Title,Text } = Typography;
 const {Option} = Select;
@@ -14,7 +15,7 @@ const News = ({ simplified }) => {
   const { data: cryptoNews, isFetching } = useGetCryptoNewsQuery({ newsCategory, count: simplified ? 10 : 100 }); //newsCategory can be changed to theguardian,coindesk, bsc
   const {data} = useGetCryptosQuery(100);
 
-  if (isFetching) return <div>Loading...</div>;
+  if (isFetching) return <Loader />;
 
   // If simplified, slice the array to get only the first 10 items
   const newsToRender = simplified ? cryptoNews?.data?.slice(0, 9) : cryptoNews?.data;

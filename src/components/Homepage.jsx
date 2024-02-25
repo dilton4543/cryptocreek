@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { Cryptocurrencies, News } from '../components';
-
+import Loader from './Loader';
 
 const { Title } = Typography; //we are destructuring the Title from typography object because we dont always want to say Typography.title.
 
@@ -15,7 +15,7 @@ const Homepage = () => {
   const globalStats = data?.data?.stats; //storing the data we get in a variable so we can use it access different data from our API e.g totalMarketcap, total, exchanges e.t.c..
 
   console.log(data);
-  if(isFetching) return 'Loading...';
+  if(isFetching) return <Loader />;
 
   return (
     <> {/* the prescence of this react fragment serve as a lightweight syntax to group a list of children elements without adding extra nodes to the DOM. This feature is particularly useful when you want to return multiple elements from a component without wrapping them in a redundant <div> or other DOM element or tags...*/}
