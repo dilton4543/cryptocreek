@@ -9,6 +9,7 @@ import { useGetCryptoDetailsQuery } from '../services/cryptoApi'; //let us impor
 const {Title, Text } = Typography;
 const {Option} = Select;
 
+//
 const CryptoDetails = () => {
  {/* to know the currency we are currently taking a look at we need to get the cinId which will come from the useParams package. useParams takes the id in the url and allows us to use it as a variable */}
   const {coinuuId} = useParams();
