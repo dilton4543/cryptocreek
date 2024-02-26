@@ -23,13 +23,10 @@ export const cryptoApi = createApi({  //we have to pass some options inside of a
             query: (count) => createRequest(`/coins?limit=${count}`), //you provide a function that points to that request
         }), //you can name the getCryptos anything you want
 
-        getExchanges: builder.query({ 
-            query: () => createRequest(`/exchanges`),
-        }), 
-
         getCryptoDetails: builder.query({//we want to add an extra service for cryptoDetails.jsx
             query: (coinuuId)=> createRequest(`/coin/${coinuuId}`), //coin not coins cause its one coin we are looking for...
         }),
+        
         getCryptoHistory: builder.query({
             query: (coinuuId)=> createRequest(`/coin/${coinuuId}/history`), 
         })
