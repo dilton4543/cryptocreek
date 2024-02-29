@@ -24,11 +24,11 @@ export const cryptoApi = createApi({  //we have to pass some options inside of a
         }), //you can name the getCryptos anything you want
 
         getCryptoDetails: builder.query({//we want to add an extra service for cryptoDetails.jsx
-            query: (coinuuId)=> createRequest(`/coin/${coinuuId}`), //coin not coins cause its one coin we are looking for...
+            // query: (coinuuId)=> createRequest(`/coin/${coinuuId}`), //coin not coins cause its one coin we are looking for...   //COMMENTED IT FOR THE MEAN TIME SO MY CALLS PER MONTH WONT GET EXHAUSTED
         }),
         
         getCryptoHistory: builder.query({
-            query: (coinuuId)=> createRequest(`/coin/${coinuuId}/history`), 
+            // query: (coinuuId)=> createRequest(`/coin/${coinuuId}/history`), //COMMENTED IT FOR THE MEAN TIME SO MY CALLS PER MONTH WONT GET EXHAUSTED TIME SO MY
         })
 
     })  

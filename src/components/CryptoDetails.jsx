@@ -25,7 +25,7 @@ const CryptoDetails = () => {
   const cryptoDetails = data?.data?.coin;
 
   if (isFetching) return <Loader />; // Show loading until the data is fetched, this will prevent the error of undefined i.e it will showing loading until the data is found instead of mapping over undefined which will cause an error.
-  if (!cryptoDetails) return <div>Cryptocurrency not found</div>;
+  if (!cryptoDetails) return <div>Cryptocurrency not found, Go and uncomment endpoint to see crypto details!!</div>;
 
   const time= ['3h','24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 

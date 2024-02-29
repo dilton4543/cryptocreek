@@ -1,63 +1,48 @@
 import React, { useState } from 'react';
-import { Typography, Row, Col, Card, Avatar, Select } from 'antd';
+import { Typography, Row, Col, Card, Select } from 'antd'; // Import Select correctly here
 import moment from 'moment';
 
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
-import { useGetCryptosQuery } from '../services/cryptoApi';
 import Loader from './Loader';
 
-const { Title,Text } = Typography;
-const {Option} = Select;
+const { Title } = Typography;
+const { Option } = Select; // Destructure Option from Select correctly
 
 const News = ({ simplified }) => {
-
-  const [newsCategory, setNewsCategory]= useState('coindesk'); //since the initail state is coindesk here, we dont have to hardcode it below again.(newsCategory:'coindesk')
-  const { data: cryptoNews, isFetching } = useGetCryptoNewsQuery({ newsCategory, count: simplified ? 10 : 100 }); //newsCategory can be changed to theguardian,coindesk, bsc
-  const {data} = useGetCryptosQuery(100);
+  // Default news category, though this new API may not actually use this parameter
+  const [newsCategory, setNewsCategory] = useState('Cryptocurrency');
+  const { data: cryptoNews, isFetching } = useGetCryptoNewsQuery({ count: simplified ? 10 : 100 });
 
   if (isFetching) return <Loader />;
 
-  // If simplified, slice the array to get only the first 10 items
-  const newsToRender = simplified ? cryptoNews?.data?.slice(0, 9) : cryptoNews?.data;
+  // The API appears to return the news articles directly as an array
+  const newsToRender = simplified ? cryptoNews?.slice(0, 9) : cryptoNews;
 
   return (
     <Row gutter={[24, 24]}>
-      {!simplified && (
-        <Col span={24}>
-          <Select 
-            showSearch 
-            className='select-news'
-            placeholder="select a crypto"
-            optionFilterProp='children'
-            onChange={(value)=> setNewsCategory(value)}
-            filterOption={(input, option)=>option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-          >
-              <Option value="coindesk"> Cryptocurrency </Option>
-              {data?.data?.coins.map((coin)=> <Option value={coin.name}>{coin.name}</Option>)}
-          </Select>
-        </Col>
-      )}
+      <div> Go and uncomment your endpoint to see news!! </div>
+      {/* ... Your existing code ... */}
       {newsToRender?.map((news, i) => (
-        <Col xs={24} sm={12} lg={8} key={news.url}>
+        <Col xs={24} sm={12} lg={8} key={i}> {/* Key changed to 'i' because 'news.url' may not be unique */}
           <Card hoverable>
             <a href={news.url} target="_blank" rel="noopener noreferrer">
               <div className="news-image-container">
-                <img
-                  src={news.thumbnail}
-                  alt={news.title}
-                  style={{ width: '100%', maxHeight: '200px', objectFit: 'cover' }}
-                />
+                {/* The API doesn't seem to provide a thumbnail, so you might need to find another way to display images or remove the image container */}
               </div>
               <div className="news-card-content">
                 <Title className="news-title" level={4}>{news.title}</Title>
                 <p>
-                  {news.description.length > 100
+                  {news.description && news.description.length > 100
                     ? `${news.description.substring(0, 100)}...`
                     : news.description}
                 </p>
               </div>
               <div className="provider-container">
-                <Title level={5}>{moment(news.createdAt).fromNow()}</Title>
+                <div>
+                  {/* Convert the provided date string to a moment object and format it */}
+                  {moment(news.date).fromNow()}
+                </div>
+                {/* You may want to add the source here if the API provides it */}
               </div>
             </a>
           </Card>
