@@ -1,79 +1,46 @@
-//we import all our components here and also include the routes for the different components adn then we export it so it can be used in the index.js
-
-import React from 'react';
-import { Routes, Route, Link} from 'react-router-dom'; //versions 5 below use Switch not Routes
+import React, { useState } from 'react';
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import { Layout, Typography, Space } from 'antd';
-
-import { Navbar, Exchanges, Homepage, Cryptocurrencies, News, CryptoDetails, Profile, Signup, Login } from './components'; // importing our Navbar component from the components folder because we have already exported it in our (components/index.js) folder.
-
+import { Navbar, Exchanges, Homepage, Cryptocurrencies, News, CryptoDetails, Profile, Signup, Login,PrivateRoute } from './components';
 import './App.css';
-// import 'antd/dist/antd.css';
 
-const App = () => { //Routes
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="app">
-
       <div className="navbar">
-        <Navbar />
+        <Navbar isLoggedIn={isLoggedIn} />
       </div>
-
       <div className="main">
-        <Layout className='layout'> {/* the layout componenent is a component from antDesign which basically just lays everything down */}
+        <Layout className='layout'>
           <div className="routes">
-            <Routes>  {/* old versions from 5 below use 'Switch' and pass in components directly instead of passing them in a prop element(element{<Example/>}) */}
-              <Route  
-              exact path="/"
-              element={<Homepage />}
-              />
-              <Route  
-              exact path="/exchanges"
-              element={<Exchanges />}
-              />
-              <Route  
-              exact path="/cryptocurrencies"
-              element={<Cryptocurrencies />}
-              />
-              <Route  
-              exact path="/crypto/:coinuuId"
-              element={<CryptoDetails />}  
-              />  {/* the colon means that the coinId will be dynamic, it could be 1,2,3,56,37,33... */}
-              <Route  
-              exact path="/news"
-              element={<News />}
-              />
-              <Route  
-              exact path="/profile"
-              element={<Profile />}
-              />
-              <Route  
-              exact path="/login"
-              element={<Login />}
-              />
-              <Route  
-              exact path="/signup"
-              element={<Signup />}
-              />
-              </Routes>
+            <Routes>
+              <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/homepage" element={<PrivateRoute isLoggedIn={isLoggedIn}><Homepage /></PrivateRoute>} />
+              <Route path="/exchanges" element={<PrivateRoute isLoggedIn={isLoggedIn}><Exchanges /></PrivateRoute>} />
+              <Route path="/cryptocurrencies" element={<PrivateRoute isLoggedIn={isLoggedIn}><Cryptocurrencies /></PrivateRoute>} />
+              <Route path="/crypto/:coinId" element={<PrivateRoute isLoggedIn={isLoggedIn}><CryptoDetails /></PrivateRoute>} />
+              <Route path="/news" element={<PrivateRoute isLoggedIn={isLoggedIn}><News /></PrivateRoute>} />
+              <Route path="/profile" element={<PrivateRoute isLoggedIn={isLoggedIn}><Profile /></PrivateRoute>} />
+            </Routes>
           </div>
         </Layout>
-
         <div className="footer">
-
-        <Space className='footer-links'> {/* Space --ants designs way of creating a div */}
-            <Link to="/">Home</Link>
+          <Space className='footer-links'>
+            <Link to="/homepage">Home</Link>
             <Link to="/exchanges">Exchanges</Link>
             <Link to="/news">News</Link>
           </Space>
-
-          <Typography.Title level={5} style={{color: 'white', textAlign: 'center', fontSize:'13px'}}>
+          <Typography.Title level={5} style={{ color: 'white', textAlign: 'center', fontSize: '13px' }}>
             Cryptocreek <br />
             All Rights Reserved
           </Typography.Title>
-      </div> 
-
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -5,13 +5,37 @@ import { useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
+  const onFinish = async (values) => {
+    try {
 
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-    // Add your login logic here and call navigate on success
-    navigate('/');
+      const body = {
+        ...values
+      }
+      const response = await fetch('https://cryprocreek.onrender.com/api/user/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to log in'); // Throw error if response is not okay
+      }
+
+      // Assuming backend returns user data upon successful login
+      const userData = await response.json();
+      console.log('Login successful:', userData);
+
+      setIsLoggedIn(true); // Update the login state
+      // Redirect to homepage or dashboard upon successful login
+      navigate('/homepage');
+    } catch (error) {
+      console.error('Error logging in:', error);
+      // Handle error, possibly show an error message to the user
+    }
   };
 
   return (
@@ -27,10 +51,10 @@ const Login = () => {
         >
           <Title level={2} style={{ color: 'white', textAlign: 'center' }}>Login</Title>
           <Form.Item
-            name="username"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            name="email"
+            rules={[{ required: true, message: 'Please input your email!' }]}
           >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="email" />
           </Form.Item>
           <Form.Item
             name="password"

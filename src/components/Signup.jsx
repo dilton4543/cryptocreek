@@ -9,11 +9,26 @@ const Signup = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate(); // Hook for navigation
 
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-    // Here you would send a request to your backend to register the user
-    // After successful registration, redirect to the login page
-    navigate('/login'); // Replace '/login' with your login route
+  const onFinish = async (values) => {
+    try {
+      const response = await fetch('https://cryprocreek.onrender.com/api/user/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values), // Sending form data as JSON
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to sign up'); // Throw error if response is not okay
+      }
+  
+      // If signup is successful, redirect to the login page
+      navigate('/');
+    } catch (error) {
+      console.error('Error signing up:', error);
+      // Handle error, possibly show an error message to the user
+    }
   };
 
   return (
@@ -110,7 +125,7 @@ const Signup = () => {
             </Button>
           </Form.Item>
           <Form.Item>
-            <Link href="/login" style={{ color: 'white' }}>Already have an account? Login</Link>
+            <Link href="/" style={{ color: 'white' }}>Already have an account? Login</Link>
           </Form.Item>
         </Form>
       </Col>
