@@ -402,3 +402,108 @@ width: 70%;
   .news-card-content {
     flex: 1; /* This makes sure that the card content takes up the available space */
   }
+
+ /* Profile.css */
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%; /* Increase the width to spread out */
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .profile-picture-container {
+    margin-bottom: 30px;
+  }
+  
+  .profile-initials {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #007bff; /* Choose a background color */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px; /* Adjust as needed */
+    font-weight: bold;
+    margin-bottom: 20px; /* Add some space between the avatar and the details */
+  }
+  
+  .user-details {
+    text-align: center;
+    background-color: #f4f7fa; /* Light grey background */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  .user-details h1 {
+    color: #007bff; /* Theme color */
+    font-size: 32px; /* Larger font size for the title */
+    margin-bottom: 30px;
+  }
+  
+  .user-details p {
+    margin: 15px 0;
+    font-size: 18px; /* Increase font size */
+    color: #333; /* Dark grey color for text */
+  }
+  
+  /* Add a hover effect to the user details card for better UI interaction */
+  .user-details:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .image-upload-label {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  /* Style changes when hovering over the upload label */
+  .image-upload-label:hover {
+    background-color: #0056b3;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f0f0f0; /* A fallback color */
+    display: block;
+  }
+
+  .profile-image-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Adjust the gap as needed */
+    margin-top: 10px;
+  }
+  
+  .remove-photo-button {
+    background-color: #dc3545; /* A shade of red for the remove button */
+    color: white;
+    padding: 2px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 11px;
+  }
+  
+  .remove-photo-button:hover {
+    background-color: #bd2130; /* Darker shade on hover */
+    transition: background-color 0.3s ease;
+  }

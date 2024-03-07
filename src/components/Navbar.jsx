@@ -1,14 +1,26 @@
 // by using .jsx it helps differentiate where react components are from basic js files.
 import React, {useState, useEffect} from 'react'
 import { Button, Menu, Typography, Avatar } from 'antd';
-import { Link } from 'react-router-dom';
-import { HomeOutlined, MoneyCollectOutlined, BulbOutlined, FundOutlined, MenuOutlined, SettingFilled, } from '@ant-design/icons';
+import { Link, useNavigate } from 'react-router-dom';
+import { HomeOutlined, MoneyCollectOutlined, BulbOutlined, FundOutlined, MenuOutlined, SettingFilled,LogoutOutlined } from '@ant-design/icons';
 
 import icon from '../images/cryptocurrency.png';    
-const Navbar = () => {
+const Navbar = ({ setIsLoggedIn }) => {
     const [activeMenu, setActiveMenu] = useState(true); //creating the state for active menu and then it is set to true initially, which we  can later set to false using a useeffect hook if the screen size reaches a particular width.
     const [screenSize, setScreenSize] = useState(null);
 
+    const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear all relevant keys/values from localStorage
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userId');
+    // If you're using state to track the logged-in status
+    setIsLoggedIn(false); // Assuming you're lifting state up and passing it down as a prop
+    // Navigate to the login or home page
+    navigate('/');
+  };
     useEffect(()=> {
         const handleResize = () =>setScreenSize(window.innerWidth); // this function will help set the screen size to window.innerwidth (window.innerwidth helps us know the size of our browser)
 
@@ -60,6 +72,10 @@ const Navbar = () => {
             <Menu.Item icon={ <SettingFilled />} >
                 <Link to="/profile">Profile</Link>
             </Menu.Item>
+            <Menu.Item icon={ <LogoutOutlined />} onClick={handleLogout}>
+                <Link to="/">Log out</Link>
+            </Menu.Item>
+
         </Menu>
         )}
 

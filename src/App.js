@@ -10,7 +10,7 @@ const App = () => {
   return (
     <div className="app">
       <div className="navbar">
-        <Navbar isLoggedIn={isLoggedIn} />
+        <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       </div>
       <div className="main">
         <Layout className='layout'>

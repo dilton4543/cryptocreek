@@ -1,58 +1,125 @@
-import React, { useState } from 'react';
-import { Avatar, Button } from 'antd';
-const UserList = ['U', 'Lucy', 'Tom', 'Edward'];
-const ColorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae'];
-const GapList = [4, 3, 2, 1];
+import React, { useState, useEffect } from 'react';
 
 const Profile = () => {
-  const [user, setUser] = useState(UserList[0]);
-  const [color, setColor] = useState(ColorList[0]);
-  const [gap, setGap] = useState(GapList[0]);
+  const [userDetails, setUserDetails] = useState(null);
+  const [userImage, setUserImage] = useState(null); // State to hold the user's profile image
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const changeUser = () => {
-    const index = UserList.indexOf(user);
-    setUser(index < UserList.length - 1 ? UserList[index + 1] : UserList[0]);
-    setColor(index < ColorList.length - 1 ? ColorList[index + 1] : ColorList[0]);
+ 
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const accessToken = localStorage.getItem('accessToken');
+      const userId = localStorage.getItem('userId');
+
+      if (!accessToken || !userId) {
+        setError('No access token or user ID available.');
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://cryprocreek.onrender.com/api/user/getUserById/${userId}`, {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`, //this grabs the token from the local storage
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch user details');
+        }
+
+        const result = await response.json();
+        setUserDetails(result.data); // Assuming the structure is { success: true, data: { ... } }
+        localStorage.setItem('userDetails', JSON.stringify(result.data)); //store in local storage
+        console.log(result.data);
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+        setError(error.toString());
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    const savedImage = localStorage.getItem('userImage');
+    if (savedImage) {
+      setUserImage(savedImage);
+    }
+
+    fetchUserDetails();
+  }, []);
+
+  const getInitials = (name) => {
+    return name ? name.split(' ')[0].substring(0, 2).toUpperCase() : 'XX';
   };
 
-  const changeGap = () => {
-    const index = GapList.indexOf(gap);
-    setGap(index < GapList.length - 1 ? GapList[index + 1] : GapList[0]);
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setUserImage(reader.result);
+        localStorage.setItem('userImage', reader.result); // Save image URL to local storage
+      };
+      reader.readAsDataURL(file);
+    }
   };
-  
+
+  const removeImage = () => {
+    setUserImage(null);
+    localStorage.removeItem('userImage'); // Remove image URL from local storage
+  };  
+
+  if (isLoading) {
+    return <div>Loading profile details...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+
+  const profileImage = userImage || `/default-avatar.png`;
+  // Display user details
   return (
-    <>
-      <Avatar
-        style={{
-          backgroundColor: color,
-          verticalAlign: 'middle',
-        }}
-        size="large"
-        gap={gap}
-      >
-        {user}
-      </Avatar>
-      <Button
-        size="small"
-        style={{
-          margin: '0 16px',
-          verticalAlign: 'middle',
-        }}
-        onClick={changeUser}
-      >
-        ChangeUser
-      </Button>
-      <Button
-        size="small"
-        style={{
-          verticalAlign: 'middle',
-        }}
-        onClick={changeGap}
-      >
-        changeGap
-      </Button>
-    </>
+    <div className="profile-container">
+
+    <div className="profile-picture-container">
+     {userImage ? (
+            <img src={profileImage} alt="Profile" className="profile-picture"/>
+          ) : (
+            <div className="profile-initials">{getInitials(userDetails?.firstName)}</div>
+          )}
+          <div className="profile-image-actions">
+            <input
+              type="file"
+              id="imageUpload"
+              hidden
+              onChange={handleImageUpload}
+            />
+            <label htmlFor="imageUpload" className="image-upload-label">
+              {userImage ? 'Change Photo' : 'Add Photo'}
+            </label>
+            {userImage && (
+              <button onClick={removeImage} className="remove-photo-button">
+                Remove Photo
+              </button>
+            )}
+          </div>
+    </div>
+
+    <div className="user-details">
+        <h1>User Profile</h1>
+        <p>Username: {userDetails?.username}</p>
+        <p>First Name: {userDetails?.firstName}</p>
+        <p>Last Name: {userDetails?.lastName}</p>
+        <p>Date of Birth: {userDetails?.dateOfBirth}</p>
+        <p>Email: {userDetails?.email}</p>
+        <p>Phone Number: {userDetails?.phoneNumber}</p>
+      </div>
+    </div>
   );
 };
 
-export default Profile
+export default Profile;

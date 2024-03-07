@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Form, Input, Button, Checkbox, Row, Col, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
@@ -7,12 +7,16 @@ const { Title } = Typography;
 
 const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false); // State to handle loading
+
   const onFinish = async (values) => {
+     setIsLoading(true);
     try {
 
       const body = {
         ...values
       }
+
       const response = await fetch('https://cryprocreek.onrender.com/api/user/signin', {
         method: 'POST',
         headers: {
@@ -25,16 +29,30 @@ const Login = ({ setIsLoggedIn }) => {
         throw new Error('Failed to log in'); // Throw error if response is not okay
       }
 
-      // Assuming backend returns user data upon successful login
-      const userData = await response.json();
-      console.log('Login successful:', userData);
+     // Assuming the backend returns an object with token, refreshToken, and user details
+      const { token, refreshToken, user } = await response.json();
+  
+      // Store the token and user ID in localStorage for later use
+      localStorage.setItem('accessToken', token);
+      if (refreshToken) { // If your API provides a refreshToken, store it; otherwise, this can be omitted
+         localStorage.setItem('refreshToken', refreshToken);
+      }
+      localStorage.setItem('userId', user._id); // Adjust based on your actual user ID field name
+ 
+      console.log('Login successful:', user);
+      console.log('Token:', token);
+      console.log('Refresh token:', refreshToken);
 
       setIsLoggedIn(true); // Update the login state
       // Redirect to homepage or dashboard upon successful login
-      navigate('/homepage');
+      navigate('/profile');
+
     } catch (error) {
       console.error('Error logging in:', error);
       // Handle error, possibly show an error message to the user
+    }
+    finally {
+      setIsLoading(false); // This will execute after try/catch no matter what
     }
   };
 
@@ -73,9 +91,11 @@ const Login = ({ setIsLoggedIn }) => {
             </a>
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button" block>
-              Log in
-            </Button>
+
+          <Button type="primary" htmlType="submit" className="login-form-button" block loading={isLoading} // Pass the loading state to the button's loading prop
+          >
+      Log in
+     </Button>
             <div style={{ color: 'white', textAlign: 'center', marginTop: '16px' }}>
               Or <a href="/signup" style={{ color: 'white' }}>register now!</a>
             </div>

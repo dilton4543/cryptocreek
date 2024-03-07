@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import millify  from 'millify' //the package thats going to format our numbers
 import { Typography, Row, Col, Statistic } from 'antd';
 import { Link } from 'react-router-dom';
@@ -13,13 +13,29 @@ const Homepage = () => {
   const{data, isFetching } = useGetCryptosQuery(10); //we passed 10 here as augument for the function call
    //we are adding a custom hook from RTK Query and equating it to useGetCryptosQuery() as the initial state of our home component. so basically if the data is fetched or if its still fetching...
   const globalStats = data?.data?.stats; //storing the data we get in a variable so we can use it access different data from our API e.g totalMarketcap, total, exchanges e.t.c..
+  const [firstName, setFirstName] = useState('');
+
+  useEffect(() => {
+    // Attempt to read the user's first name from local storage
+    const userDetails = localStorage.getItem('userDetails');
+    if (userDetails) {
+      const parsedDetails = JSON.parse(userDetails);
+      console.log("Parsed User Details:", parsedDetails); //debuging
+      setFirstName(parsedDetails.firstName); // Assuming the first name is stored under the 'firstName' key
+    }
+  }, []);
+
+  console.log("First Name State:",  firstName ); // Debugging
 
   console.log(data);
   if(isFetching) return <Loader />;
 
   return (
     <> {/* the prescence of this react fragment serve as a lightweight syntax to group a list of children elements without adding extra nodes to the DOM. This feature is particularly useful when you want to return multiple elements from a component without wrapping them in a redundant <div> or other DOM element or tags...*/}
-    
+
+    {/* Display the greeting message with the user's first name */}
+    {firstName && <Title level={2}>Hello {firstName}, let's begin!</Title>}
+
       <Title level={3}  className="heading" >Global Crypto Stats</Title>
       <Row>
         <Col span={12}> <Statistic title="Total Cryptocurrencies" value={globalStats.totalCoins}/> </Col>
