@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Form, Input, Button, Checkbox, Row, Col, Typography } from 'antd';
+import { Form, Input, Button, Checkbox, Row, Col, Typography, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -50,6 +50,11 @@ const Login = ({ setIsLoggedIn }) => {
     } catch (error) {
       console.error('Error logging in:', error);
       // Handle error, possibly show an error message to the user
+      notification.error({
+        message: 'Login Failed',
+        description: 'Incorrect username or password.',
+        duration: 4.5, // Duration the notification stays open, in seconds (optional)
+      });
     }
     finally {
       setIsLoading(false); // This will execute after try/catch no matter what
