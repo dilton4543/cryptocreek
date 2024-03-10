@@ -21,7 +21,7 @@ const App = () => {
               <Route path="/homepage" element={<PrivateRoute isLoggedIn={isLoggedIn}><Homepage /></PrivateRoute>} />
               <Route path="/exchanges" element={<PrivateRoute isLoggedIn={isLoggedIn}><Exchanges /></PrivateRoute>} />
               <Route path="/cryptocurrencies" element={<PrivateRoute isLoggedIn={isLoggedIn}><Cryptocurrencies /></PrivateRoute>} />
-              <Route path="/crypto/:coinId" element={<PrivateRoute isLoggedIn={isLoggedIn}><CryptoDetails /></PrivateRoute>} />
+              <Route path="/crypto/:coinuuId" element={<PrivateRoute isLoggedIn={isLoggedIn}><CryptoDetails /></PrivateRoute>} />
               <Route path="/news" element={<PrivateRoute isLoggedIn={isLoggedIn}><News /></PrivateRoute>} />
               <Route path="/profile" element={<PrivateRoute isLoggedIn={isLoggedIn}><Profile /></PrivateRoute>} />
             </Routes>

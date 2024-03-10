@@ -19,7 +19,7 @@ export const cryptoNewsApi = createApi({
     // Updating the query to match the new API's endpoints
     // Assuming you want to fetch top news from CoinDesk
     getCryptoNews: builder.query({
-      // query: ({ count = 10 }) => createRequest(`/top/${count}`),  //COMMENTED IT FOR THE MEAN TIME SO MY CALLS PER MONTH WILL NOT BE EXHAUSETD
+      query: ({ count = 10 }) => createRequest(`/top/${count}`),  
     }),
     // Add other endpoints here if needed
   }),

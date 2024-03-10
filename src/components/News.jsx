@@ -20,7 +20,6 @@ const News = ({ simplified }) => {
 
   return (
     <Row gutter={[24, 24]}>
-      <div> Go and uncomment your endpoint to see news!! </div>
       {/* ... Your existing code ... */}
       {newsToRender?.map((news, i) => (
         <Col xs={24} sm={12} lg={8} key={i}> {/* Key changed to 'i' because 'news.url' may not be unique */}
