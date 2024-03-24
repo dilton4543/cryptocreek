@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox, Row, Col, Typography, notification } fro
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
-const { Title } = Typography;
+const { Title, Link } = Typography;
 
 const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
@@ -102,7 +102,7 @@ const Login = ({ setIsLoggedIn }) => {
       Log in
      </Button>
             <div style={{ color: 'white', textAlign: 'center', marginTop: '16px' }}>
-              Or <a href="/signup" style={{ color: 'white' }}>register now!</a>
+              Or <Link href="/signup" style={{ color: 'white' }}>Register now</Link>
             </div>
           </Form.Item>
         </Form>
