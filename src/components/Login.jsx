@@ -102,7 +102,7 @@ const Login = ({ setIsLoggedIn }) => {
       Log in
      </Button>
             <div style={{ color: 'white', textAlign: 'center', marginTop: '16px' }}>
-              Or <Link to="/signup">Register now</Link>
+              Or <Link href="../signup">Register now</Link>
             </div>
           </Form.Item>
         </Form>

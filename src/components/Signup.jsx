@@ -125,7 +125,7 @@ const Signup = () => {
             </Button>
           </Form.Item>
           <Form.Item>
-            <Link to="/" style={{ color: 'white' }}>Already have an account? Login</Link>
+            <Link a href="/" style={{ color: 'white' }}>Already have an account? Login</Link>
           </Form.Item>
         </Form>
       </Col>
