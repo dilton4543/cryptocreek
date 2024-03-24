@@ -91,7 +91,7 @@ const Login = ({ setIsLoggedIn }) => {
           </Form.Item>
           <Form.Item>
             <Checkbox style={{ color: 'white' }}>Remember me</Checkbox>
-            <a className="login-form-forgot" href="" style={{ float: 'right', color: 'white' }}>
+            <a className="login-form-forgot" href="/" style={{ float: 'right', color: 'white' }}>
               Forgot password?
             </a>
           </Form.Item>
@@ -102,7 +102,7 @@ const Login = ({ setIsLoggedIn }) => {
       Log in
      </Button>
             <div style={{ color: 'white', textAlign: 'center', marginTop: '16px' }}>
-              Or <Link href="/signup" style={{ color: 'white' }}>Register now</Link>
+              Or <Link to="/signup">Register now</Link>
             </div>
           </Form.Item>
         </Form>
