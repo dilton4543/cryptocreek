@@ -33,6 +33,7 @@ const App = () => {
             <Link to="/exchanges">Exchanges</Link>
             <Link to="/news">News</Link>
             <Link to="/signup">signup</Link>
+            <Link to="/signup">Login</Link>
           </Space>
           <Typography.Title level={5} style={{ color: 'white', textAlign: 'center', fontSize: '13px' }}>
             Cryptocreek <br />
