@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/cryptocreek/static/css/main.fb5f78f5.css",
-    "main.js": "/cryptocreek/static/js/main.48e31b9e.js",
+    "main.js": "/cryptocreek/static/js/main.9df2d366.js",
     "static/media/cryptocurrency.png": "/cryptocreek/static/media/cryptocurrency.1548aced3f0605895bac.png",
     "index.html": "/cryptocreek/index.html",
     "main.fb5f78f5.css.map": "/cryptocreek/static/css/main.fb5f78f5.css.map",
-    "main.48e31b9e.js.map": "/cryptocreek/static/js/main.48e31b9e.js.map"
+    "main.9df2d366.js.map": "/cryptocreek/static/js/main.9df2d366.js.map"
   },
   "entrypoints": [
     "static/css/main.fb5f78f5.css",
-    "static/js/main.48e31b9e.js"
+    "static/js/main.9df2d366.js"
   ]
 }
